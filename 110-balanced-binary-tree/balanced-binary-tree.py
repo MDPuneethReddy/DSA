@@ -9,7 +9,7 @@ class Solution:
         self.bool=True
         def recurr(root):
             if root is None:
-                return True
+                return 0
             v=recurr(root.left)
             v1=recurr(root.right)
             if(abs(v-v1)>1):
