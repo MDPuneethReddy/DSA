@@ -10,6 +10,7 @@ class Solution:
         :type node: ListNode
         :rtype: void Do not return anything, modify node in-place instead.
         """
+        # basically copy the next node val to the current node and remove the next node
         temp=node.next
         value=node.next.val
         node.val=value
