@@ -1,5 +1,6 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # timecomplexity- 0(n)^2 and space- o(n)^2
         def checkRows(board):
             for i in board:
                 s=set()
