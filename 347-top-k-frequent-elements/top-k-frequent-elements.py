@@ -1,6 +1,7 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         #learn what is meant by bucket sort
+        #time -0(n) and space - o(n)
         d={}
         for i in nums:
             if i not in d:
@@ -16,7 +17,6 @@ class Solution:
                 for j in l[len(nums)-i-1]:
                     values.append(j)
                     k-=1
-                    print(values,k)
                     if(k<=0):
                         return values
         
