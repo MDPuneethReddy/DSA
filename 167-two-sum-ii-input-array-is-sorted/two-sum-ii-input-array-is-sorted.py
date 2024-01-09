@@ -1,5 +1,6 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # time -o(n) space-o(1)
         i=0
         j=len(nums)-1
         while(i<j):
