@@ -2,7 +2,7 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         l=[]
         def recurssion(open,close,s):
-            print(open,close,s)
+            # print(open,close,s)
             if open==0 and close==0:
                 # print(open,close,s)
                 l.append(s)
