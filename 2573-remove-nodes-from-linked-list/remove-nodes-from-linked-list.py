@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #Time complexity -o(n) and Space complexity- o(n)
         output=ListNode()
         values=[]
         curr=head
