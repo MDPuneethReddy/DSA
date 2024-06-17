@@ -6,23 +6,15 @@
 #         self.right = right
 class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        self.tsum=0
-        self.s=[]
-        def recurr(root):
+        def recurr(root,bstr,totalValue):
             if root is None:
-                return
+                return totalValue
+            bstr+=str(root.val)
             if root.left is None and root.right is None:
-                val="".join(self.s)
-                val+=str(root.val)
-                self.tsum+=int(val,2)
-                return
-            self.s.append(str(root.val))
-            recurr(root.left)
-            recurr(root.right)
-            self.s.pop()
-            return
-        recurr(root)
-        return self.tsum
-            
-        
-        
+                # print(bstr)
+                totalValue[0]=totalValue[0]+int(bstr,2)
+                return totalValue
+            recurr(root.left,bstr,totalValue)
+            recurr(root.right,bstr,totalValue)
+            return totalValue
+        return recurr(root,"",[0])[0]
