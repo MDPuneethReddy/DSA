@@ -6,27 +6,16 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if root is None:
-            return []
-        l=[root,None]
-        mainList=[]
-        while(True):
-            value=l.pop(0)
-            if value==None:
-                if len(l)==0:
-                    break
-                else:
-                    l.append(None)
-            else:
-                if len(l) > 0 and l[0] is None:
-                    mainList.append(value.val)
-                if value.left:
-                    l.append(value.left)
-                if value.right:
-                    l.append(value.right)
-        return mainList
-
-            
+        def recurr(root,level,mainList,dlevel):
+            if root is None:
+                return mainList
+            if level not in dlevel:
+                mainList.append(root.val)
+                dlevel.add(level)
+            recurr(root.right,level+1,mainList,dlevel)
+            recurr(root.left,level+1,mainList,dlevel)
+            return mainList
+        return recurr(root,0,[],set())
 
 
         
