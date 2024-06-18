@@ -6,14 +6,13 @@
 #         self.right = right
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        self.su=0
-        def recurr(root):
+        def recurr(root,level,isLeft,value):
             if root is None:
-                return
-            if root.left and root.left.left is None and root.left.right is None:
-                self.su+=root.left.val
-            recurr(root.left)
-            recurr(root.right)
-        recurr(root)
-        return self.su
+                return value
+            if isLeft and root.left is None and root.right is None:
+                value[0]+=root.val
+            recurr(root.left,level+1,True,value)
+            recurr(root.right,level+1,False,value)
+            return value
+        return recurr(root,0,False,[0])[0]
         
