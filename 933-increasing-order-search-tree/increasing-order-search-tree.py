@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
-        l=[]
-        newTree=TreeNode()
-        self.curr=newTree
+        mainTree=TreeNode()
+        self.curr=mainTree
         def recurr(root):
+            # print(mainTree)
             if root is None:
                 return 
             recurr(root.left)
-            l.append(root.val)
             self.curr.right=TreeNode(root.val)
             self.curr=self.curr.right
             recurr(root.right)
-            return
+            return 
         recurr(root)
+        return mainTree.right
         
-        return newTree.right
+            
         
