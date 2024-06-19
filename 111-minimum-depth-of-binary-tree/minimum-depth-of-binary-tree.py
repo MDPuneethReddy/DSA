@@ -8,17 +8,14 @@ class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
             return 0
-        s=0
-        self.mv=math.inf
-        def recurr(root,s):
+        def recurr(root,level,mini):
             if root is None:
-                return 
-            s+=1
+                return mini
             if root.left is None and root.right is None:
-                self.mv=min(self.mv,s)
-            recurr(root.left,s)
-            recurr(root.right,s)
-            return
-        recurr(root,s)
-        return self.mv
+                mini[0]=min(mini[0],level)
+                return mini
+            recurr(root.left,level+1,mini)
+            recurr(root.right,level+1,mini)
+            return mini
+        return recurr(root,0,[math.inf])[0]+1
         
