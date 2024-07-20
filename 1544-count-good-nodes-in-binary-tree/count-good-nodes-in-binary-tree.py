@@ -6,20 +6,16 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        if root is None:
-            return 0
-        maxi=root.val
-        def recurr(root,maxi,count):
+        self.count=0
+        def recurr(root,maxvalue):
             if root is None:
-                return count
-            if root.val>=maxi:
-                count[0]+=1
-                maxi=max(maxi,root.val)
-            recurr(root.left,maxi,count)
-            recurr(root.right,maxi,count)
-            return count
-        return recurr(root,root.val,[0])[0]
-
-
-
+                return
+            if root.val>=maxvalue:
+                self.count+=1
+            maxvalue=max(maxvalue,root.val)
+            recurr(root.left,maxvalue)
+            recurr(root.right,maxvalue)
+            return
+        recurr(root,root.val)
+        return self.count
         
