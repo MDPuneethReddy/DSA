@@ -11,7 +11,7 @@ class Solution:
             
             if root is None:
                 return 
-            print(root.val,minvalue,maxvalue)
+            # print(root.val,minvalue,maxvalue)
             leftvalue=min(root.val,minvalue)
             rightvalue=max(root.val,maxvalue)
             recurr(root.left,leftvalue,rightvalue)
