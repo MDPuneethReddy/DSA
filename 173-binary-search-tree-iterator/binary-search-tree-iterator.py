@@ -8,21 +8,22 @@ class BSTIterator:
     def recurr(self,root):
         if root is None:
             return
-        self.recurr(root.right)
-        self.stack.append(root.val)
-        self.recurr(root.left)
+        self.stack.append(root)
+        if root.left:
+            self.recurr(root.left)
         return
-        
+
     def __init__(self, root: Optional[TreeNode]):
         self.root=root
         self.stack=[]
         self.recurr(root)
-    
-    
+        
 
     def next(self) -> int:
-
-        return self.stack.pop()
+        value=self.stack.pop()
+        self.recurr(value.right)
+        return value.val
+        
 
     def hasNext(self) -> bool:
         if len(self.stack)>0:
