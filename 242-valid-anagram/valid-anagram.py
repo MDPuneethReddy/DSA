@@ -1,27 +1,26 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        sdict={}
-        tdict={}
+        d1={}
+        d2={}
         for i in s:
-            if i not in sdict:
-                sdict[i]=1
+            if i not in d1:
+                d1[i]=1
             else:
-                sdict[i]+=1
+                d1[i]+=1
         for i in t:
-            if i not in tdict:
-                tdict[i]=1
+            if i not in d2:
+                d2[i]=1
             else:
-                tdict[i]+=1
-        for i in sdict:
-            if i not in tdict:
+                d2[i]+=1
+        for i in d2:
+            if i not in d1:
                 return False
-            if sdict[i]!=tdict[i]:
+            if d1[i]!=d2[i]:
                 return False
-        for i in tdict:
-            if i not in sdict:
+        for i in d1:
+            if i not in d2:
                 return False
-            if sdict[i]!=tdict[i]:
+            if d1[i]!=d2[i]:
                 return False
         return True
-
-        
+                
