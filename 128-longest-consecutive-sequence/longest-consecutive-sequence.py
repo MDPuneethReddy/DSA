@@ -1,20 +1,21 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        #tiime complexity - o(n) space- o(n)
-        setValues=set(nums)
-        count=0
+        uniq=set()
+        for i in nums:
+            uniq.add(i)
+        maxcount=1
         for i in range(len(nums)):
-            v=1
-            if nums[i]-1 not in setValues:
-                j=1
-                while(1):
-                    # print(nums[j]+j)
-                    if nums[i]+j in setValues:
-                        j+=1
+            if nums[i]-1 not in uniq:
+                v=1
+                inc=0
+                while(True):
+                    if nums[i]+inc in uniq:
+                        
+                        inc+=1
+                        v+=1
                     else:
                         break
-                count=max(count,j)
-        return count
-
+                maxcount=max(maxcount,v)
+        return maxcount-1
 
         
