@@ -3,17 +3,20 @@ class Solution:
         values=[0]*len(temperatures)
         stack=[]
         for i in range(len(temperatures)):
-            while(1):
+            if len(stack)==0:
+                stack.append([i,temperatures[i]])
+            else:
+                while(len(stack)>0):
+                    if stack[-1][1]< temperatures[i]:
+                        v=stack.pop()
+                        values[v[0]]=i-v[0]
+                    else:
+                        stack.append([i,temperatures[i]])
+                        break
                 if len(stack)==0:
-                    stack.append([temperatures[i],i])
-                    break
-                v=stack[-1]
-                if(v[0]<temperatures[i]):
-                    v1=stack.pop()
-                    values[v1[1]]=abs(v1[1]-i)
-                else:
-                    stack.append([temperatures[i],i])
-                    break
+                    stack.append([i,temperatures[i]])
+                # if  stack[-1][0]!=i:
+                #     stack.append([i,temperatures[i]])
+        for i in stack:
+            values[i[0]]=0
         return values
-
-        
