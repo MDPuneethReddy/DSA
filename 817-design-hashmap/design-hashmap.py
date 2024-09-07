@@ -1,23 +1,19 @@
 class MyHashMap:
 
     def __init__(self):
-        self.dic={}
+        self.dic=[-1]*1000000
         
 
     def put(self, key: int, value: int) -> None:
-        self.dic[key]=value
+        self.dic[key-1]=value
         
 
     def get(self, key: int) -> int:
-        if key in self.dic:
-            return self.dic[key]
-        else:
-            return -1
+        return self.dic[key-1]
         
 
     def remove(self, key: int) -> None:
-        if key in self.dic:
-            del self.dic[key]
+        self.dic[key-1]=-1
         
 
 
