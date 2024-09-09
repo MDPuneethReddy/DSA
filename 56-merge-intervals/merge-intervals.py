@@ -1,20 +1,15 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        #time complexity -o(nlogn)
-        intervals.sort(key=lambda x: x[0])
-        print(intervals)
-        values=[]
-        start=intervals[0][0]
-        end=intervals[0][1]
+        intervals.sort(key=lambda x:(x[0]))
+        mainValue=[intervals[0]]
+        mainList=[]
         for i in range(1,len(intervals)):
-            if intervals[i][0]>=start and intervals[i][0]<=end:
-                if intervals[i][1]>end:
-                    end=intervals[i][1]
+            if mainValue[0][1]>=intervals[i][0]:
+                mainValue[0]=[mainValue[0][0],max(mainValue[0][1],intervals[i][1])]
             else:
-                values.append([start,end])
-                start=intervals[i][0]
-                end=intervals[i][1]
-        values.append([start,end])
-        return values
-
+                mainList.append(mainValue.pop())
+                mainValue.append(intervals[i])
+        if len(mainValue)>0:
+            mainList.append(mainValue[0])
+        return mainList
         
