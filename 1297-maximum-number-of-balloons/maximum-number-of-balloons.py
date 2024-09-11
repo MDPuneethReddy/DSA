@@ -17,10 +17,10 @@ class Solution:
                 # print(d[i],i)
                 if i in ["l","o"]:
                     c=min(c,d[i]//2)
-                    print(c)
+                    # print(c)
                 else:
                     c=min(c,d[i])
-                    print(c)
+                    # print(c)
         return c
 
         
