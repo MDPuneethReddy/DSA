@@ -7,18 +7,17 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head is None:
             return head
-        if head and head.next is None:
+        if head.next is None:
             return head
-        curr1=head
-        curr2=head.next
-        while(curr1 and curr2):
-            # print(curr1.val, curr2.val)
-            if curr1.val==curr2.val:
-                temp=curr2.next
-                curr1.next=temp
-                curr2=temp
+        curr=head.next
+        prev=head
+        while(curr):
+            if curr.val==prev.val:
+                curr=curr.next
+                prev.next=curr
             else:
-                curr1=curr1.next
-                curr2=curr2.next
+                curr=curr.next
+                prev=prev.next
+        # print(prev,curr)
         return head
         
