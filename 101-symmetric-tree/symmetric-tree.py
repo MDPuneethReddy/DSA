@@ -8,15 +8,17 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if root is None:
             return True
-        def recurr(root1,root2):
-            if root1 is None and root2 is None:
+        if root.left and not root.right:
+            return False
+        if root.right and not root.left:
+            return False
+        def recurr(leftroot,rightroot):
+            if leftroot is None and rightroot is None:
                 return True
-            elif root1 is None and root2 is not None:
+            if not leftroot or not rightroot:
                 return False
-            elif root1 is not None and root2 is None:
+            if leftroot.val!=rightroot.val:
                 return False
-            elif root1.val!=root2.val:
-                return False
-            return recurr(root1.left,root2.right) and recurr(root1.right,root2.left)
+            return recurr(leftroot.left,rightroot.right) and recurr(leftroot.right,rightroot.left)
         return recurr(root.left,root.right)
         
