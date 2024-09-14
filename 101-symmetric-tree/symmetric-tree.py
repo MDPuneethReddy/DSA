@@ -6,12 +6,6 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        if root is None:
-            return True
-        if root.left and not root.right:
-            return False
-        if root.right and not root.left:
-            return False
         def recurr(leftroot,rightroot):
             if leftroot is None and rightroot is None:
                 return True
