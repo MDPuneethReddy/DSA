@@ -1,36 +1,27 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        r = len(board)
-        c = len(board[0])
-
-        def recur(board, word, r, c, i, j, visited, index):
-            if index == len(word):
+        def recurr(board,word,visited,wordind,i,j,height,width):
+            if wordind==len(word):
                 return True
-            if i < 0 or i >= r or j < 0 or j >= c:
+            if i==height or i<0 or j==width or j<0:
                 return False
-            if (i, j) in visited:
+            if [i,j] in visited:
                 return False
-            if board[i][j] != word[index]:
+            if board[i][j]!=word[wordind]:
                 return False
-
-            visited.add((i, j))
-            index += 1
-
-            # Explore all four directions
-            if (recur(board, word, r, c, i - 1, j, visited, index) or
-                recur(board, word, r, c, i + 1, j, visited, index) or
-                recur(board, word, r, c, i, j - 1, visited, index) or
-                recur(board, word, r, c, i, j + 1, visited, index)):
-                return True
-
-            visited.remove((i, j))
-            return False
-
-        for i in range(r):
-            for j in range(c):
-                if board[i][j] == word[0]:
-                    if recur(board, word, r, c, i, j, set(), 0):
-                        return True
-        return False
+            visited.append([i,j])
+            value=recurr(board,word,visited,wordind+1,i+1,j,height,width) or recurr(board,word,visited,wordind+1,i-1,j,height,width) or recurr(board,word,visited,wordind+1,i,j+1,height,width) or recurr(board,word,visited,wordind+1,i,j-1,height,width)
+            visited.pop()
+            return value
+            
+            
+        height=len(board)
+        width=len(board[0])
+        value=False
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j]==word[0]:
+                    value=value or recurr(board,word,[],0,i,j,height,width)
+        return value
 
         
