@@ -4,21 +4,15 @@ class Solution:
         l=len(digits)
         if l==0:
             return []
-        ind=1
-        mainValue=[i for i in letters[digits[0]]]
-        def recurr(digits,ind,l,mainValue):
+        ind=0
+        mainValues=[]
+        def recurr(digits,ind,string):
             if ind==l:
-                return mainValue
-            values=[]
-            for j in mainValue:
-                for k in letters[digits[ind]]:
-                    values.append(j+k)
-            mainValue=values
-            return recurr(digits,ind+1,l,mainValue)
-            
-        return recurr(digits,ind,l,mainValue)
+                mainValues.append(string)
+                return
+            for i in letters[digits[ind]]:
+                recurr(digits,ind+1,string+i)
+            return
+        recurr(digits,ind,"")
+        return mainValues
                 
-
-    
-
-        
