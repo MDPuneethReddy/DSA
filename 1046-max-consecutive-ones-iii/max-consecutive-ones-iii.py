@@ -1,5 +1,6 @@
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
+        #time complexity - o(n) and space - o(1)
         l=0
         r=0
         zeroCount=0
