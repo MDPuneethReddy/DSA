@@ -6,11 +6,14 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def recurr(root,mini,maxi):
+        def recurr(root,left,right):
             if root is None:
                 return True
-            if root.val<=mini or root.val>=maxi:
+            if root.val>left and root.val<right:
+                return recurr(root.left,left,root.val) and recurr(root.right,root.val,right)
+            else:
                 return False
-            return recurr(root.left,mini,root.val) and recurr(root.right,root.val,maxi)
-        return recurr(root,-math.inf,math.inf)
+
+
+        return recurr(root.left,-math.inf,root.val) and recurr(root.right,root.val,math.inf)
         
