@@ -1,21 +1,21 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        # time-o(n) space-o(n)+o(n).   0(n) for recursion stack
-        # def recurr(n,dp):
-        #     if n<=1:
-        #         return 1
-        #     if n in dp:
-        #         return dp[n]
-        #     value= recurr(n-1,dp)+recurr(n-2,dp)
-        #     dp[n]=value
-        #     return value
-        # return recurr(n,{})
-
-        prev1=1
-        prev2=1
-        for i in range(2,n+1):
-            curr=prev1+prev2
-            prev2=prev1
-            prev1=curr
-        return prev1
+        d={1:1,2:2}
+        def recurr(n):
+            if n==1:
+                return 1
+            if n==2:
+                return 2
+            if n-1 in d:
+                v=d[n-1]
+            else:
+                v=recurr(n-1)
+                d[n-1]=v
+            if n-2 in d:
+                v1=d[n-2]
+            else:
+                v1=recurr(n-2)
+                d[n-2]=v1
+            return v+v1
+        return recurr(n)
         
