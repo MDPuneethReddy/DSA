@@ -1,23 +1,19 @@
+import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        #learn what is meant by bucket sort
-        #time -0(n) and space - o(n)
         d={}
         for i in nums:
             if i not in d:
                 d[i]=1
             else:
                 d[i]+=1
-        l = [[] for _ in range(len(nums))]
-        for i in d:
-            l[d[i]-1].append(i)
+        heapArr=[]
+        heapq.heapify(heapArr)
+        for key,value in d.items():
+            heapq.heappush(heapArr,(-value,key))
         values=[]
-        for i in range(len(nums)):
-            if(nums[len(nums)-i-1]!=[]):
-                for j in l[len(nums)-i-1]:
-                    values.append(j)
-                    k-=1
-                    if(k<=0):
-                        return values
-        
+        for i in range(k):
+            v=heapq.heappop(heapArr)
+            values.append(v[1])
+        return values
         
