@@ -6,11 +6,9 @@ class Solution:
         def dfs(i,j):
             if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]):
                 return
-            if visited[i][j]==1:
-                return
             if grid[i][j]=="0":
                 return
-            visited[i][j]=1
+            grid[i][j]="0"
             # print(visited)
             dfs(i + 1, j)
             dfs(i - 1, j)
@@ -19,8 +17,7 @@ class Solution:
             return
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if visited[i][j]==0 and grid[i][j]=="1":
-                    print("yes",i,j)
+                if  grid[i][j]=="1":
                     count+=1
                     dfs(i,j)
         return count
