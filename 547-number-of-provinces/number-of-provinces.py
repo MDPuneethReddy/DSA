@@ -13,13 +13,13 @@ class Solution:
                     dfs(i)
             return
 
-        while(sum(visited)!=len(visited)):
+        
             
             # print(count,visited)
-            for i in range(len(visited)):
-                if visited[i]==0:
-                    count+=1
-                    dfs(i)
+        for i in range(len(visited)):
+            if visited[i]==0:
+                count+=1
+                dfs(i)
                 # print(visited)
         return count
         
