@@ -1,33 +1,31 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
         d={}
-        if edges==[]:
-            return True
         for i in range(len(edges)):
-            if edges[i][0] in d:
-                d[edges[i][0]].append(edges[i][1])
-                if edges[i][1] in d:
-                    d[edges[i][1]].append(edges[i][0])
-                else:
-                    d[edges[i][1]]=[edges[i][0]]
-            else:
+            if edges[i][0] not in d:
                 d[edges[i][0]]=[edges[i][1]]
-                if edges[i][1] in d:
-                    d[edges[i][1]].append(edges[i][0])
-                else:
-                    d[edges[i][1]]=[edges[i][0]]
-        self.bool=False
-        self.visited=[0]*n
-        def recurr(d,source,destination):
-            if source not in d:
-                return 
-            if self.visited[source]==1:
-                return
-            self.visited[source]=1
-            if source==destination:
-                self.bool=True
-            for i in d[source]:
-                recurr(d,i,destination)
-            return
-        recurr(d,source,destination)
-        return self.bool        
+            else:
+                d[edges[i][0]].append(edges[i][1])
+            if edges[i][1] not in d:
+                d[edges[i][1]]=[edges[i][0]]
+            else:
+                d[edges[i][1]].append(edges[i][0])
+        queue=[source]
+        visited=[0]*n
+        found=False
+        # print(d)
+        while(queue):
+            v=queue.pop(0)
+            if v==destination:
+                found=True
+                break
+            if visited[v]==0:
+                visited[v]=1
+            
+                for i in range(len(d[v])):
+                    queue.append(d[v][i])
+                # print(v,queue,visited)
+        return found
+
+
+        
