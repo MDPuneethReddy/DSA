@@ -10,22 +10,48 @@ class Solution:
                 d[edges[i][1]]=[edges[i][0]]
             else:
                 d[edges[i][1]].append(edges[i][0])
-        queue=[source]
+        #dfs
         visited=[0]*n
-        found=False
-        # print(d)
-        while(queue):
-            v=queue.pop(0)
-            if v==destination:
-                found=True
-                break
-            if visited[v]==0:
-                visited[v]=1
+        def recurr(entry):
+            # print(entry)
+            if entry==destination:
+                # print("yes")
+                return True
+            if visited[entry]==1:
+                return False
+            visited[entry]=1
+            found=False
+            for i in range(len(d[entry])):
+                if visited[d[entry][i]]==0:
+                    print(d[entry][i])
+                    found=found or recurr(d[entry][i])
+            return found
+        return recurr(source)
             
-                for i in range(len(d[v])):
-                    queue.append(d[v][i])
-                # print(v,queue,visited)
-        return found
+
+        
+
+
+
+
+
+        # bfs
+        # queue=[source]
+        # visited=[0]*n
+        # found=False
+        # # print(d)
+        # while(queue):
+        #     v=queue.pop(0)
+        #     if v==destination:
+        #         found=True
+        #         break
+        #     if visited[v]==0:
+        #         visited[v]=1
+            
+        #         for i in range(len(d[v])):
+        #             queue.append(d[v][i])
+        #         # print(v,queue,visited)
+        # return found
 
 
         
