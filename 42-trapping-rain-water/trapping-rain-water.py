@@ -1,5 +1,6 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
+        #time complexity -o(n) and space complexity -o(n)
         if len(height)==0:
             return 0
         leftmax=[]
