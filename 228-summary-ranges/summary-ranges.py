@@ -2,33 +2,24 @@ class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         if len(nums)==0:
             return []
-        if len(nums)==1:
-            return [str(nums[0])]
-        mainList=[]
-        stack=[]
-        for i in range(len(nums)):
-            if len(stack)==0:
-                stack.append(nums[i])
+        start=nums[0]
+        end=nums[0]
+        mainValues=[]
+        for i in range(1,len(nums)):
+            if nums[i]-end==1:
+                end=nums[i]
             else:
-                if (stack[-1]+1)==nums[i]:
-                    stack.append(nums[i])
+                if start==end:
+                    mainValues.append(str(start))
                 else:
-                    if len(stack)==0:
-                        mainList.append("")
-                    if len(stack)==1:
-                        mainList.append(str(stack[-1]))
-                        stack=[]
-                    else:
-                        mainList.append(str(stack[0])+"->"+str(stack[-1]))
-                        stack=[]
-                    stack.append(nums[i])
-        if len(stack)!=0:
-            
-            if len(stack)==1:
-                mainList.append(str(stack[-1]))
-            else:
-                mainList.append(str(stack[0])+"->"+str(stack[-1]))
-        return mainList
-            
-                
+                    mainValues.append(f'{str(start)}->{str(end)}')
+                start=nums[i]
+                end=nums[i]
+        if start==end:
+            mainValues.append(str(start))
+        else:
+            mainValues.append(f'{str(start)}->{str(end)}')
+        return mainValues
+        
+
         
