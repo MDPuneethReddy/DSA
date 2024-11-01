@@ -1,5 +1,6 @@
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
+        #time- o(n), space-o(1)
         if len(nums)==0:
             return []
         start=nums[0]
