@@ -5,7 +5,6 @@ class Solution:
             bottom=len(matrix)
             while(top<bottom):
                 mid=bottom+((top-bottom)//2)
-                print("mid",mid)
                 if target>=matrix[mid][0] and target<=matrix[mid][len(matrix[0])-1]:
                     return mid
                 elif target<matrix[mid][0]:
@@ -17,12 +16,10 @@ class Solution:
         value=binarysearch()
         if value>=len(matrix):
             return False
-        print("value",value)
         left=0
         right=len(matrix[0])-1
         while(left<=right):
             mid=left+((right-left)//2)
-            print("mid",mid)
             if matrix[value][mid]==target:
                 return True
             elif matrix[value][mid]<target:
