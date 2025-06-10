@@ -1,5 +1,7 @@
 class Solution:
     def findClosestNumber(self, nums: List[int]) -> int:
+        #time complexity -o(n)
+        #space complexity - o(1)
         closetLargestNumsValue=nums[0]
         closestValue=abs(nums[0])
         for i in range(1,len(nums)):
