@@ -1,14 +1,15 @@
 class Solution:
     def findClosestNumber(self, nums: List[int]) -> int:
-        dif=math.inf
-        val=nums[0]
-        for i in range(len(nums)):
-            d=abs(nums[i]-0)
-            if d<dif:
-                val=nums[i]
-                dif=d
-            elif d==dif:
-                if nums[i]>val:
-                    val=nums[i]
-        return val
+        closetLargestNumsValue=nums[0]
+        closestValue=abs(nums[0])
+        for i in range(1,len(nums)):
+            if abs(nums[i])<closestValue:
+                closetLargestNumsValue=nums[i]
+                closestValue=abs(nums[i])
+            elif abs(nums[i])==closestValue:
+                if nums[i]>closetLargestNumsValue:
+                    closetLargestNumsValue=nums[i]
+        return closetLargestNumsValue
+
+
         
