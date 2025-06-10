@@ -1,24 +1,25 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        i=0
-        j=0
-        k=0
-        l1=len(word1)
-        l2=len(word2)
-        ms=""
-        while(i<l1 and j<l2):
-            if k%2==0:
-                ms+=word1[i]
-                i+=1
+        #timecomplexity - o(n+m)
+        #spacecomplexity- o(1)
+        mergedString=""
+        counter1=0
+        counter2=0
+        oddOrEvenCounter=True
+        while(counter1<len(word1) and counter2<len(word2)):
+            if oddOrEvenCounter:
+                mergedString+=word1[counter1]
+                counter1+=1
+                oddOrEvenCounter=False
             else:
-                ms+=word2[j]
-                j+=1
-            k+=1
-            
-        if i!=l1:
-            ms+="".join(v for v in word1[i:l1])
-        if j!=l2:
-            ms+="".join(v for v in word2[j:l2])
-        return ms
+                mergedString+=word2[counter2]
+                counter2+=1
+                oddOrEvenCounter=True
+        if(counter1<len(word1)):
+            mergedString+=word1[counter1:]
+        if(counter2<len(word2)):
+            mergedString+=word2[counter2:]
+        return mergedString
+
 
         
