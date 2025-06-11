@@ -1,5 +1,7 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
+        #timecomplexity- o(n)
+        #space-o(1)
         counter1=0
         counter2=0
         while(counter1<len(s) and counter2<len(t)):
