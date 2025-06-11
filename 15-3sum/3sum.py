@@ -10,18 +10,19 @@ class Solution:
             while(j<k):
                 if nums[i]+nums[j]+nums[k]==0:
                     values.append([nums[i],nums[j],nums[k]])
+                    j+=1
+                    k-=1
                     while(j<k):
-                        if nums[j]==nums[j+1]:
+                        if nums[j]==nums[j-1]:
                             j+=1
                         else:
                             break
                     while(j<k):
-                        if nums[k]==nums[k-1]:
+                        if nums[k]==nums[k+1]:
                             k-=1
                         else:
                             break
-                    j+=1
-                    k-=1
+                    
 
                 elif nums[i]+nums[j]+nums[k]>0:
                     k-=1
