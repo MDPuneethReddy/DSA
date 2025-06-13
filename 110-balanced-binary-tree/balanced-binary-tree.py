@@ -6,15 +6,17 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        self.bool=True
+        self.isbalanced=True
         def recurr(root):
             if root is None:
                 return 0
-            v=recurr(root.left)
-            v1=recurr(root.right)
-            if(abs(v-v1)>1):
-                self.bool=False
-            return 1+max(v,v1)
+            left=recurr(root.left)
+            right=recurr(root.right)
+            if abs(left-right)>1:
+                self.isbalanced=False
+            # print(self.isbalanced)
+            return 1+max(left,right)
         recurr(root)
-        return self.bool
+        return self.isbalanced
+            
         
