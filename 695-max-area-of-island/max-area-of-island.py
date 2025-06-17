@@ -1,17 +1,28 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        maxi=0
-        def recurr(i,j):
-            if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]):
+        def dfs(grid,i,j,gridl,gridh):
+            
+            if i<0 or i>=gridl or j<0 or j>=gridh:
                 return 0
             if grid[i][j]==0:
                 return 0
-            grid[i][j]=0
-            return 1+recurr(i-1,j)+recurr(i+1,j)+recurr(i,j-1)+recurr(i,j+1)
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
+            if (i,j) in visited:
+                return 0
+            visited.add((i,j))
+            return 1+ dfs(grid,i-1,j,gridl,gridh)+dfs(grid,i+1,j,gridl,gridh)+dfs(grid,i,j+1,gridl,gridh)+dfs(grid,i,j-1,gridl,gridh)
+        
+
+        visited=set()
+        i=0
+        j=0
+        gridl=len(grid)
+        gridh=len(grid[0])
+        self.maxicount=0
+        for i in range(gridl):
+            for j in range(gridh):
                 if grid[i][j]==1:
-                    maxi=max(maxi,recurr(i,j))
-        return maxi
-                    
+                    count=dfs(grid,i,j,gridl,gridh)
+                    self.maxicount=max(count,self.maxicount)
+        
+        return self.maxicount
         
